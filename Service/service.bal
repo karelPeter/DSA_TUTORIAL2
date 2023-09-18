@@ -14,12 +14,15 @@ isolated service /courses on new http:Listener(8080) {
         self.all_courses = [];
         self.counter = 0;
     }
+    //GET
     isolated resource function get all() returns CourseDetail[] {
         io:println("handling a get request to /courses ...");
         lock {
             return self.all_courses.clone();
         }
     }
+
+    //POST
     isolated resource function post create(@http:Payload CourseDetail
 new_course) returns json {
         io:println("handling a post requestto /courses ...");
